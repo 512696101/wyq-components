@@ -1,8 +1,24 @@
-# share
+# table
 
 ## Project setup
+```
+yarn install
+```
 
-<!-- 在项目根目录 -->
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
 
-yarn <!-- 安装所有包 -->
-yarn start <!-- 启动项目成功后会给出本地地址访问即可 -->
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Lints and fixes files
+```
+yarn lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
