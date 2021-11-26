@@ -1,45 +1,63 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import TagInput from '../views/form.vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
-const originalPush = VueRouter.prototype.push;
-VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-};
-
-Vue.use(VueRouter)
-
-const routes = [
+export const children = [
+  {
+    path: '/reportManagement',
+    name: 'ReportManagement',
+    meta: {
+      title: '报表管理',
+      icon: 'Reading',
+    },
+    component: () => import('@/views/Report'),
+  },
+  {
+    path: '/userManagement',
+    name: 'userManagement',
+    meta: {
+      title: '用户管理',
+      icon: 'UserFilled',
+    },
+    component: () => import('@/views/User'),
+  },
+  {
+    path: '/roleManagement',
+    name: 'RoleManagement',
+    meta: {
+      title: '角色管理',
+      icon: 'Avatar',
+    },
+    component: () => import('@/views/Role'),
+  },
+  {
+    path: '/tableuu',
+    name: 'Tableuu',
+    meta: {
+      title: 'tableuu账号',
+      icon: 'CreditCard',
+    },
+    component: () => import('@/views/Tableuu'),
+  },
+  {
+    path: '/log',
+    name: 'Log',
+    meta: {
+      title: '日志中心',
+      icon: 'Discount',
+    },
+    component: () => import('@/views/Log'),
+  },
+]
+export const routes = [
   {
     path: '/',
-    name: 'TagInput',
-    component: TagInput
+    name: 'Home',
+    component: () => import('@/views/Nav'),
+    children,
   },
-  {
-    path: '/Import',
-    name: 'Import',
-  
-    component: () => import('../views/FileList.vue')
-  },
-  {
-    path: '/Export',
-    name: 'Export',
-    component: () => import( '../views/ExportList.vue')
-  },
-  {
-    path: '/dome',
-    name: 'dome',
-    component: () => import( '../views/dome.vue')
-  },
-  {
-    path: '/tree',
-    name: 'tree',
-    component: () => import( '../views/Tree.vue')
-  }
 ]
-
-const router = new VueRouter({
-  routes
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
 })
 
 export default router

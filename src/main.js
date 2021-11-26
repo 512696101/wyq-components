@@ -1,12 +1,14 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
-import ElementUI from "element-ui";
-import "element-ui/lib/theme-chalk/index.css";
-Vue.config.productionTip = false
+import store from './store'
+import router from './router/login'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as icons from '@element-plus/icons'
 
-Vue.use(ElementUI)
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+import './styles/app.css'
+const Vueapp = createApp(App)
+Object.keys(icons).forEach((key) => {
+  Vueapp.component(key, icons[key])
+})
+Vueapp.use(store).use(router).use(ElementPlus).mount('#app')
